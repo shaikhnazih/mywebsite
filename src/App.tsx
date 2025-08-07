@@ -1,7 +1,7 @@
 import './App.css'
-import { Box, Container, Heading, Text, VStack, HStack, SimpleGrid, IconButton, Avatar, Tag, TagLabel, Stack, List, ListItem, ListIcon, Flex, useColorModeValue } from '@chakra-ui/react';
+import { Box, Container, Heading, Text, VStack, HStack, SimpleGrid, IconButton, Avatar, Tag, TagLabel, Stack, List, ListItem, ListIcon, Flex, useColorModeValue, Button } from '@chakra-ui/react';
 import { FaLinkedin, FaGithub, FaEnvelope, FaCheckCircle, FaBirthdayCake, FaFlag, FaLanguage } from 'react-icons/fa';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import Shirin from './Shirin';
 
 const skills = [
@@ -292,7 +292,9 @@ function Skills() {
   );
 }
 
-function PersonalDetails() {
+
+function PersonalDetailsWithNav() {
+  const navigate = useNavigate();
   return (
     <Box as="section" py={12}>
       <Container maxW="4xl">
@@ -304,8 +306,16 @@ function PersonalDetails() {
               <Text fontWeight="bold">{item.label}:</Text>
               <Text>{item.value}</Text>
             </HStack>
+            
           ))}
+           <HStack key="as12nazih" spacing={3} align="center">
+              <Box  color="teal.500" boxSize={6} />
+              <Text fontWeight="bold">Wife:</Text>
+              <Text>  <Button
+                 mt={8} colorScheme="teal" onClick={() => navigate('/shirin')}>Shirin Pathan</Button></Text>
+            </HStack>
         </Stack>
+      
       </Container>
     </Box>
   );
@@ -321,7 +331,7 @@ function App() {
             element={
               <>
                 <Hero />
-                <PersonalDetails />
+              <PersonalDetailsWithNav />
                 <Education />
                 <About />
                 <Skills />
@@ -336,5 +346,4 @@ function App() {
     </Box>
   );
 }
-
 export default App;

@@ -1,8 +1,8 @@
 import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
 import './App.css';
-import { Box, Container, Heading, Text, VStack, HStack, SimpleGrid, IconButton, Avatar, Tag, TagLabel, Stack, List, ListItem, ListIcon, Flex, useColorModeValue } from '@chakra-ui/react';
+import { Box, Container, Heading, Text, VStack, HStack, SimpleGrid, IconButton, Avatar, Tag, TagLabel, Stack, List, ListItem, ListIcon, Flex, useColorModeValue, Button } from '@chakra-ui/react';
 import { FaLinkedin, FaGithub, FaEnvelope, FaCheckCircle, FaBirthdayCake, FaFlag, FaLanguage } from 'react-icons/fa';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import Shirin from './Shirin';
 const skills = [
     '.NET', '.NET Core', 'ASP.NET MVC', 'Entity Framework', 'Angular', 'AngularJS', 'LINQ', 'React', 'Redux', 'HTML/CSS', 'jQuery', 'Flutter', 'Microsoft SQL Server', 'PostgreSQL', 'MySQL', 'AWS', 'Azure', 'Agile', 'Microservices', 'CRM', 'C#', 'Dart', 'JS', 'TypeScript', 'SQL', 'PWA', 'Web API', 'GIT', 'Unit Tests', 'TFS'
@@ -166,10 +166,11 @@ function Education() {
 function Skills() {
     return (_jsx(Box, { as: "section", py: 12, bg: useColorModeValue('gray.50', 'gray.800'), children: _jsxs(Container, { maxW: "5xl", children: [_jsx(Heading, { as: "h2", size: "lg", mb: 4, color: "teal.700", children: "Skills" }), _jsx(Stack, { direction: "row", flexWrap: "wrap", spacing: 2, children: skills.map((skill, idx) => (_jsx(Tag, { size: "md", colorScheme: "teal", m: 1, borderRadius: "full", children: _jsx(TagLabel, { children: skill }) }, idx))) })] }) }));
 }
-function PersonalDetails() {
-    return (_jsx(Box, { as: "section", py: 12, children: _jsxs(Container, { maxW: "4xl", children: [_jsx(Heading, { as: "h2", size: "lg", mb: 4, color: "teal.700", children: "Personal Details" }), _jsx(Stack, { direction: { base: 'column', md: 'row' }, spacing: 8, children: personal.map((item, idx) => (_jsxs(HStack, { spacing: 3, align: "center", children: [_jsx(Box, { as: item.icon, color: "teal.500", boxSize: 6 }), _jsxs(Text, { fontWeight: "bold", children: [item.label, ":"] }), _jsx(Text, { children: item.value })] }, idx))) })] }) }));
+function PersonalDetailsWithNav() {
+    const navigate = useNavigate();
+    return (_jsx(Box, { as: "section", py: 12, children: _jsxs(Container, { maxW: "4xl", children: [_jsx(Heading, { as: "h2", size: "lg", mb: 4, color: "teal.700", children: "Personal Details" }), _jsxs(Stack, { direction: { base: 'column', md: 'row' }, spacing: 8, children: [personal.map((item, idx) => (_jsxs(HStack, { spacing: 3, align: "center", children: [_jsx(Box, { as: item.icon, color: "teal.500", boxSize: 6 }), _jsxs(Text, { fontWeight: "bold", children: [item.label, ":"] }), _jsx(Text, { children: item.value })] }, idx))), _jsxs(HStack, { spacing: 3, align: "center", children: [_jsx(Box, { color: "teal.500", boxSize: 6 }), _jsx(Text, { fontWeight: "bold", children: "Wife:" }), _jsxs(Text, { children: ["  ", _jsx(Button, { mt: 8, colorScheme: "teal", onClick: () => navigate('/shirin'), children: "Shirin Pathan" })] })] }, "as12nazih")] })] }) }));
 }
 function App() {
-    return (_jsx(Box, { bg: useColorModeValue('gray.100', 'gray.900'), minH: "100vh", children: _jsx(Router, { children: _jsxs(Routes, { children: [_jsx(Route, { path: "/", element: _jsxs(_Fragment, { children: [_jsx(Hero, {}), _jsx(PersonalDetails, {}), _jsx(Education, {}), _jsx(About, {}), _jsx(Skills, {}), _jsx(Experience, {}), _jsx(Projects, {})] }) }), _jsx(Route, { path: "/shirin", element: _jsx(Shirin, {}) })] }) }) }));
+    return (_jsx(Box, { bg: useColorModeValue('gray.100', 'gray.900'), minH: "100vh", children: _jsx(Router, { children: _jsxs(Routes, { children: [_jsx(Route, { path: "/", element: _jsxs(_Fragment, { children: [_jsx(Hero, {}), _jsx(PersonalDetailsWithNav, {}), _jsx(Education, {}), _jsx(About, {}), _jsx(Skills, {}), _jsx(Experience, {}), _jsx(Projects, {})] }) }), _jsx(Route, { path: "/shirin", element: _jsx(Shirin, {}) })] }) }) }));
 }
 export default App;

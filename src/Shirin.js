@@ -1,8 +1,9 @@
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
 import { Box, Flex, Image, Heading, Text, VStack, useColorModeValue } from '@chakra-ui/react';
 import { useState, useRef } from 'react';
 export default function Shirin() {
     const [showTogether, setShowTogether] = useState(false);
+    const lastTap = useRef(0);
     const [dragging, setDragging] = useState(null);
     const [dragPos, setDragPos] = useState(null);
     const dragSource = useRef(null);
@@ -91,7 +92,7 @@ export default function Shirin() {
                                     pointerEvents: 'none',
                                     zIndex: 2000,
                                     opacity: 0.8
-                                } : {} }), _jsx(Text, { fontWeight: "bold", fontSize: "lg", children: "Nazih " })] }), _jsx(VStack, { spacing: 4, flex: 2, minH: "250px", justify: "center", align: "center", children: showTogether && (_jsx(Image, { src: "/public/together.jpg", alt: "Together", borderRadius: "full", boxSize: { base: '250px', md: '350px' }, objectFit: "cover", boxShadow: "xl", aspectRatio: 1 })) }), _jsxs(VStack, { spacing: 4, flex: 1, ref: shirinRef, draggable: true, onDragStart: e => handleDragStart('shirin', e), onDrag: handleDrag, onDragOver: handleDragOver, onDrop: () => handleDrop('shirin'), onDragEnd: handleDragEnd, onTouchStart: e => handleTouchStart('shirin', e), onTouchMove: handleTouchMove, onTouchEnd: () => handleTouchEnd('shirin'), style: { zIndex: dragging === 'shirin' ? 1001 : undefined }, children: [_jsx(Image, { src: "/public/shirin.jpg", alt: "Shirin ", borderRadius: "full", boxSize: "200px", objectFit: "cover", boxShadow: "lg", draggable: true, aspectRatio: 1, style: dragging === 'shirin' && dragPos ? {
+                                } : {} }), _jsx(Text, { fontWeight: "bold", fontSize: "lg", children: "Nazih " })] }), _jsx(VStack, { spacing: 4, flex: 2, minH: "250px", justify: "center", align: "center", style: { cursor: showTogether ? 'pointer' : undefined }, children: showTogether && (_jsxs(_Fragment, { children: [_jsx(Image, { src: "/public/together.jpg", alt: "Together", borderRadius: "full", boxSize: { base: '250px', md: '350px' }, objectFit: "cover", boxShadow: "xl", aspectRatio: 1 }), _jsx(Text, { fontSize: "lg", color: "teal.700", textAlign: "center", mt: 4, children: "Together, we make the perfect team. Every moment with you is my favorite memory. Love you always!" })] })) }), _jsxs(VStack, { spacing: 4, flex: 1, ref: shirinRef, draggable: true, onDragStart: e => handleDragStart('shirin', e), onDrag: handleDrag, onDragOver: handleDragOver, onDrop: () => handleDrop('shirin'), onDragEnd: handleDragEnd, onTouchStart: e => handleTouchStart('shirin', e), onTouchMove: handleTouchMove, onTouchEnd: () => handleTouchEnd('shirin'), style: { zIndex: dragging === 'shirin' ? 1001 : undefined }, children: [_jsx(Image, { src: "/public/shirin.jpg", alt: "Shirin ", borderRadius: "full", boxSize: "200px", objectFit: "cover", boxShadow: "lg", draggable: true, aspectRatio: 1, style: dragging === 'shirin' && dragPos ? {
                                     position: 'fixed',
                                     left: dragPos.x - 100,
                                     top: dragPos.y - 100,

@@ -99,19 +99,7 @@ export default function Shirin() {
       <Heading as="h2" size="xl" textAlign="center" color="teal.700" mb={8}>Shirin & Nazih</Heading>
       <Flex justify="center" align="center" gap={8} direction={{ base: 'column', md: 'row' }} maxW={{ base: '100%', md: '1100px' }} mx="auto" w="100%">
         {/* Left: Husband */}
-        <VStack spacing={4} flex={1}
-          ref={nazihRef}
-          draggable
-          onDragStart={e => handleDragStart('nazih', e)}
-          onDrag={handleDrag}
-          onDragOver={handleDragOver}
-          onDrop={() => handleDrop('nazih')}
-          onDragEnd={handleDragEnd}
-          onTouchStart={e => handleTouchStart('nazih', e)}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={() => handleTouchEnd('nazih')}
-          style={{ zIndex: dragging === 'nazih' ? 1001 : undefined }}
-        >
+        <VStack spacing={4} flex={1} ref={nazihRef} style={{ zIndex: dragging === 'nazih' ? 1001 : undefined }}>
           <Image
             src="/public/nazih.jpg"
             alt="Nazih "
@@ -121,6 +109,14 @@ export default function Shirin() {
             boxShadow="lg"
             draggable
             aspectRatio={1}
+            onDragStart={e => handleDragStart('nazih', e)}
+            onDrag={handleDrag}
+            onDragOver={handleDragOver}
+            onDrop={() => handleDrop('nazih')}
+            onDragEnd={handleDragEnd}
+            onTouchStart={e => handleTouchStart('nazih', e)}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={() => handleTouchEnd('nazih')}
             style={dragging === 'nazih' && dragPos ? {
               position: 'fixed',
               left: dragPos.x - 100,
@@ -160,19 +156,7 @@ export default function Shirin() {
           )}
         </VStack>
         {/* Right: Wife */}
-        <VStack spacing={4} flex={1}
-          ref={shirinRef}
-          draggable
-          onDragStart={e => handleDragStart('shirin', e)}
-          onDrag={handleDrag}
-          onDragOver={handleDragOver}
-          onDrop={() => handleDrop('shirin')}
-          onDragEnd={handleDragEnd}
-          onTouchStart={e => handleTouchStart('shirin', e)}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={() => handleTouchEnd('shirin')}
-          style={{ zIndex: dragging === 'shirin' ? 1001 : undefined }}
-        >
+        <VStack spacing={4} flex={1} ref={shirinRef} style={{ zIndex: dragging === 'shirin' ? 1001 : undefined }}>
           <Image
             src="/public/shirin.jpg"
             alt="Shirin "
@@ -182,6 +166,14 @@ export default function Shirin() {
             boxShadow="lg"
             draggable
             aspectRatio={1}
+            onDragStart={e => handleDragStart('shirin', e)}
+            onDrag={handleDrag}
+            onDragOver={handleDragOver}
+            onDrop={() => handleDrop('shirin')}
+            onDragEnd={handleDragEnd}
+            onTouchStart={e => handleTouchStart('shirin', e)}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={() => handleTouchEnd('shirin')}
             style={dragging === 'shirin' && dragPos ? {
               position: 'fixed',
               left: dragPos.x - 100,
