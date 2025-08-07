@@ -101,7 +101,7 @@ export default function Shirin() {
         {/* Left: Husband */}
         <VStack spacing={4} flex={1} ref={nazihRef} style={{ zIndex: dragging === 'nazih' ? 1001 : undefined }}>
           <Image
-            src="nazih.jpg"
+            src="nazih.JPG"
             alt="Nazih "
             borderRadius="full"
             boxSize="200px"
@@ -141,7 +141,7 @@ export default function Shirin() {
           {showTogether && (
             <>
               <Image
-                src="together.jpg"
+                src="together.JPG"
                 alt="Together"
                 borderRadius="full"
                 boxSize={{ base: '250px', md: '350px' }}
@@ -158,7 +158,7 @@ export default function Shirin() {
         {/* Right: Wife */}
         <VStack spacing={4} flex={1} ref={shirinRef} style={{ zIndex: dragging === 'shirin' ? 1001 : undefined }}>
           <Image
-            src="shirin.jpg"
+            src="shirin.JPG"
             alt="Shirin "
             borderRadius="full"
             boxSize="200px"
