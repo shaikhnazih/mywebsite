@@ -1,8 +1,11 @@
 import { Box, Flex, Image, Heading, Text, VStack, useColorModeValue } from '@chakra-ui/react';
+
 import { useState, useRef } from 'react';
 
 export default function Shirin() {
+
   const [showTogether, setShowTogether] = useState(false);
+  const lastTap = useRef<number>(0);
   const [dragging, setDragging] = useState<string | null>(null);
   const [dragPos, setDragPos] = useState<{ x: number; y: number } | null>(null);
   const dragSource = useRef<string | null>(null);
@@ -130,17 +133,30 @@ export default function Shirin() {
           <Text fontWeight="bold" fontSize="lg">Nazih </Text>
         </VStack>
         {/* Middle: Together image, hidden until drag event */}
-        <VStack spacing={4} flex={2} minH="250px" justify="center" align="center">
+        <VStack
+          spacing={4}
+          flex={2}
+          minH="250px"
+          justify="center"
+          align="center"
+         
+          style={{ cursor: showTogether ? 'pointer' : undefined }}
+        >
           {showTogether && (
-            <Image
-              src="/public/together.jpg"
-              alt="Together"
-              borderRadius="full"
-              boxSize={{ base: '250px', md: '350px' }}
-              objectFit="cover"
-              boxShadow="xl"
-              aspectRatio={1}
-            />
+            <>
+              <Image
+                src="/public/together.jpg"
+                alt="Together"
+                borderRadius="full"
+                boxSize={{ base: '250px', md: '350px' }}
+                objectFit="cover"
+                boxShadow="xl"
+                aspectRatio={1}
+              />
+              <Text fontSize="lg" color="teal.700" textAlign="center" mt={4}>
+                Together, we make the perfect team. Every moment with you is my favorite memory. Love you always!
+              </Text>
+            </>
           )}
         </VStack>
         {/* Right: Wife */}
@@ -180,5 +196,5 @@ export default function Shirin() {
       </Flex>
     </Box>
   );
-}
 
+}

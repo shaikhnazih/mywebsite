@@ -1,0 +1,13 @@
+/*
+  SPA Fallback for client-side routing
+*/
+/* For Netlify or static hosting: redirect all requests to index.html */
+/*
+  Place this file in your public/ directory if deploying to Netlify or similar hosts
+*/
+/*    /index.html   200
+*/
+/* For Vercel, use vercel.json with rewrites. For GitHub Pages, use HashRouter or 404.html fallback. */
+/*
+  /    /index.html   200
+*/
