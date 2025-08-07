@@ -1,1 +1,3 @@
+# Ignore Vite/React build output
+dist/
 node_modules

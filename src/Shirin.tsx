@@ -61,6 +61,7 @@ export default function Shirin() {
 
   // Touch event handlers (mobile)
   const handleTouchStart = (who: string, e?: React.TouchEvent) => {
+    if (e) e.preventDefault(); // Prevent scroll on touch start
     touchSource.current = who;
     setDragging(who);
     if (e && e.touches.length > 0) {
@@ -69,6 +70,7 @@ export default function Shirin() {
   };
   const handleTouchMove = (e: React.TouchEvent) => {
     if (dragging && e.touches.length > 0) {
+      e.preventDefault(); // Prevent page scroll while dragging
       setDragPos({ x: e.touches[0].clientX, y: e.touches[0].clientY });
     }
   };
@@ -150,7 +152,17 @@ export default function Shirin() {
                 aspectRatio={1}
               />
               <Text fontSize="lg" color="teal.700" textAlign="center" mt={4}>
-                Together, we make the perfect team. Every moment with you is my favorite memory. Love you always!
+              My Love,
+
+Every time I look at you, I’m reminded of how lucky I am. Your beauty still takes my breath away — not just on the outside, but the kindness and warmth you carry within make you even more radiant.
+
+Being with you fills my life with a kind of happiness I never knew was possible. Your smile lights up my world, and your presence makes everything feel just right. I don’t say it enough, but I truly feel blessed to call you mine.
+
+Thank you for being you — so beautiful, so loving, and so perfect for me. 
+
+Love you always.
+
+
               </Text>
             </>
           )}
