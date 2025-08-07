@@ -168,9 +168,9 @@ function Hero() {
         As a Senior Software Engineer with over 9 years of experience, I am adept at developing scalable systems that enhance user experience. My expertise lies in leading teams, managing complex projects, and delivering innovative solutions in various technologies. I thrive in collaborative environments and am excited about taking on challenging tasks that contribute to organizational success.
       </Text>
       <HStack justify="center" mt={6} spacing={4}>
-        <IconButton as="a" href="mailto:nazih@example.com" aria-label="Email" icon={<FaEnvelope />} colorScheme="teal" />
-        <IconButton as="a" href="https://github.com/nazihmulla" aria-label="GitHub" icon={<FaGithub />} colorScheme="teal" />
-        <IconButton as="a" href="https://linkedin.com/in/nazihmulla" aria-label="LinkedIn" icon={<FaLinkedin />} colorScheme="teal" />
+        <IconButton as="a" href="mailto:nazihshaikh@gmail.com" aria-label="Email" icon={<FaEnvelope />} colorScheme="teal" />
+        <IconButton as="a" href="https://github.com/shaikhnazih" aria-label="GitHub" icon={<FaGithub />} colorScheme="teal" />
+        <IconButton as="a" href="https://linkedin.com/in/nazihshaikh" aria-label="LinkedIn" icon={<FaLinkedin />} colorScheme="teal" />
       </HStack>
     </Box>
   );
