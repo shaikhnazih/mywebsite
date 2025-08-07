@@ -28,3 +28,12 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build 
+    - name: Deploy to Hostinger via FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.1.0
+      with:
+        server: ${{ secrets.FTP_HOST  }}
+        username: ${{ secrets.FTP_USERNAME  }}
+        password: ${{ secrets.FTP_PASSWORD  }}
+        local-dir: ./dist
+        server-dir: ${{ secrets.FTP_PATH }}
+        
