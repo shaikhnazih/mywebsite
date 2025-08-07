@@ -1,6 +1,8 @@
 import './App.css'
 import { Box, Container, Heading, Text, VStack, HStack, SimpleGrid, IconButton, Avatar, Tag, TagLabel, Stack, List, ListItem, ListIcon, Flex, useColorModeValue } from '@chakra-ui/react';
 import { FaLinkedin, FaGithub, FaEnvelope, FaCheckCircle, FaBirthdayCake, FaFlag, FaLanguage } from 'react-icons/fa';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Shirin from './Shirin';
 
 const skills = [
   '.NET', '.NET Core', 'ASP.NET MVC', 'Entity Framework', 'Angular', 'AngularJS', 'LINQ', 'React', 'Redux', 'HTML/CSS', 'jQuery', 'Flutter', 'Microsoft SQL Server', 'PostgreSQL', 'MySQL', 'AWS', 'Azure', 'Agile', 'Microservices', 'CRM', 'C#', 'Dart', 'JS', 'TypeScript', 'SQL', 'PWA', 'Web API', 'GIT', 'Unit Tests', 'TFS'
@@ -312,13 +314,25 @@ function PersonalDetails() {
 function App() {
   return (
     <Box bg={useColorModeValue('gray.100', 'gray.900')} minH="100vh">
-      <Hero />
-      <PersonalDetails />
-      <Education />
-      <About />
-      <Skills />
-      <Experience />
-      <Projects />
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Hero />
+                <PersonalDetails />
+                <Education />
+                <About />
+                <Skills />
+                <Experience />
+                <Projects />
+              </>
+            }
+          />
+          <Route path="/shirin" element={<Shirin />} />
+        </Routes>
+      </Router>
     </Box>
   );
 }
