@@ -162,7 +162,7 @@ function Hero() {
         mx="auto"
         boxShadow="lg"
       />
-      <Heading as="h1" size="2xl" color="white">Nazih Mullah</Heading>
+      <Heading as="h1" size="2xl" color="white">Nazih Mulla</Heading>
       <Text fontSize="xl" color="whiteAlpha.900" mt={2} fontWeight="bold">Sr Software Engineer</Text>
       <Text fontSize="md" color="whiteAlpha.800" mt={4} maxW="2xl" mx="auto">
         As a Senior Software Engineer with over 9 years of experience, I am adept at developing scalable systems that enhance user experience. My expertise lies in leading teams, managing complex projects, and delivering innovative solutions in various technologies. I thrive in collaborative environments and am excited about taking on challenging tasks that contribute to organizational success.
@@ -314,12 +314,11 @@ function App() {
     <Box bg={useColorModeValue('gray.100', 'gray.900')} minH="100vh">
       <Hero />
       <PersonalDetails />
+      <Education />
       <About />
+      <Skills />
       <Experience />
       <Projects />
-      <Education />
-      <Skills />
-     
     </Box>
   );
 }
