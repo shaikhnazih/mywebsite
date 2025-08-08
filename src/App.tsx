@@ -2,8 +2,6 @@ import './App.css'
 import { Box, Container, Heading, Text, VStack, HStack, SimpleGrid, IconButton, Avatar, Tag, TagLabel, Stack, List, ListItem, ListIcon, Flex, useColorModeValue, Button } from '@chakra-ui/react';
 import { FaLinkedin, FaGithub, FaEnvelope, FaCheckCircle, FaBirthdayCake, FaFlag, FaLanguage } from 'react-icons/fa';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-import Shirin from './Shirin';
-
 const skills = [
   '.NET', '.NET Core', 'ASP.NET MVC', 'Entity Framework', 'Angular', 'AngularJS', 'LINQ', 'React', 'Redux', 'HTML/CSS', 'jQuery', 'Flutter', 'Microsoft SQL Server', 'PostgreSQL', 'MySQL', 'AWS', 'Azure', 'Agile', 'Microservices', 'CRM', 'C#', 'Dart', 'JS', 'TypeScript', 'SQL', 'PWA', 'Web API', 'GIT', 'Unit Tests', 'TFS'
 ];
@@ -335,7 +333,7 @@ function App() {
               </>
             }
           />
-          <Route path="/shirin" element={<Shirin />} />
+         
         </Routes>
       </Router>
     </Box>
