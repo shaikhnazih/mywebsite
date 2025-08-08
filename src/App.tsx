@@ -1,7 +1,9 @@
-import './App.css'
-import { Box, Container, Heading, Text, VStack, HStack, SimpleGrid, IconButton, Avatar, Tag, TagLabel, Stack, List, ListItem, ListIcon, Flex, useColorModeValue, Button } from '@chakra-ui/react';
-import { FaLinkedin, FaGithub, FaEnvelope, FaCheckCircle, FaBirthdayCake, FaFlag, FaLanguage } from 'react-icons/fa';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import './App.css';
+import {
+  Box, Container, Heading, Text, VStack, HStack, SimpleGrid, IconButton, Avatar, Tag, TagLabel, Stack, List, ListItem, ListIcon, Flex, useColorModeValue, Button, Divider, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, useBreakpointValue, Fade, Link, chakra
+} from '@chakra-ui/react';
+import { FaLinkedin, FaGithub, FaEnvelope, FaCheckCircle, FaBirthdayCake, FaFlag, FaLanguage, FaChevronDown, FaChevronUp, FaHome, FaUser, FaBriefcase, FaProjectDiagram, FaGraduationCap, FaTools } from 'react-icons/fa';
+import { useRef } from 'react';
 const skills = [
   '.NET', '.NET Core', 'ASP.NET MVC', 'Entity Framework', 'Angular', 'AngularJS', 'LINQ', 'React', 'Redux', 'HTML/CSS', 'jQuery', 'Flutter', 'Microsoft SQL Server', 'PostgreSQL', 'MySQL', 'AWS', 'Azure', 'Agile', 'Microservices', 'CRM', 'C#', 'Dart', 'JS', 'TypeScript', 'SQL', 'PWA', 'Web API', 'GIT', 'Unit Tests', 'TFS'
 ];
@@ -151,37 +153,69 @@ const projects = [
   }
 ];
 
-function Hero() {
+
+function ProfileCard() {
+  const cardBg = useColorModeValue('rgba(255,255,255,0.85)', 'rgba(26,32,44,0.85)');
+  const borderColor = useColorModeValue('teal.200', 'teal.700');
+  const shadow = useColorModeValue('0 8px 32px 0 rgba(31, 38, 135, 0.15)', '0 8px 32px 0 rgba(0,0,0,0.45)');
+  const isMobile = useBreakpointValue({ base: true, md: false });
   return (
-    <Box as="section" pt={16} pb={12} textAlign="center" bgGradient="linear(to-b, teal.500, teal.700)">
-      <Avatar
-        size="2xl"
-        name="Nazih Mulla"
-        src="https://ui-avatars.com/api/?name=Nazih+Mulla&background=0D8ABC&color=fff&size=256"
-        mb={4}
-        mx="auto"
-        boxShadow="lg"
-      />
-      <Heading as="h1" size="2xl" color="white">Nazih Mulla</Heading>
-      <Text fontSize="xl" color="whiteAlpha.900" mt={2} fontWeight="bold">Sr Software Engineer</Text>
-      <Text fontSize="md" color="whiteAlpha.800" mt={4} maxW="2xl" mx="auto">
-        As a Senior Software Engineer with over 9 years of experience, I am adept at developing scalable systems that enhance user experience. My expertise lies in leading teams, managing complex projects, and delivering innovative solutions in various technologies. I thrive in collaborative environments and am excited about taking on challenging tasks that contribute to organizational success.
-      </Text>
-      <HStack justify="center" mt={6} spacing={4}>
-        <IconButton as="a" href="mailto:nazihshaikh@gmail.com" aria-label="Email" icon={<FaEnvelope />} colorScheme="teal" />
-        <IconButton as="a" href="https://github.com/shaikhnazih" aria-label="GitHub" icon={<FaGithub />} colorScheme="teal" />
-        <IconButton as="a" href="https://linkedin.com/in/nazihshaikh" aria-label="LinkedIn" icon={<FaLinkedin />} colorScheme="teal" />
-      </HStack>
+    <Box as="section" pt={10} pb={6} px={2} bgGradient="linear(to-b, teal.400, teal.600, teal.800)" minH="40vh">
+      <Container maxW="3xl" centerContent>
+        <Box
+          w="100%"
+          borderRadius="2xl"
+          boxShadow={shadow}
+          bg={cardBg}
+          borderWidth="2px"
+          borderColor={borderColor}
+          p={{ base: 6, md: 10 }}
+          mt={-20}
+          backdropFilter="blur(8px)"
+          position="relative"
+        >
+          <Flex direction={isMobile ? 'column' : 'row'} align="center" justify="space-between">
+            <Avatar
+              size="2xl"
+              name="Nazih Mulla"
+              src="https://ui-avatars.com/api/?name=Nazih+Mulla&background=0D8ABC&color=fff&size=256"
+              mb={isMobile ? 4 : 0}
+              mr={isMobile ? 0 : 8}
+              boxShadow="lg"
+              border="4px solid"
+              borderColor="teal.400"
+            />
+            <Box flex="1">
+              <Heading as="h1" size="xl" color="teal.700">Nazih Mulla</Heading>
+              <Text fontSize="lg" color="teal.500" fontWeight="bold" mt={1}>Sr Software Engineer</Text>
+              <HStack mt={3} spacing={3}>
+                <IconButton as="a" href="mailto:nazihshaikh@gmail.com" aria-label="Email" icon={<FaEnvelope />} colorScheme="teal" variant="ghost" />
+                <IconButton as="a" href="https://github.com/shaikhnazih" aria-label="GitHub" icon={<FaGithub />} colorScheme="teal" variant="ghost" />
+                <IconButton as="a" href="https://linkedin.com/in/nazihshaikh" aria-label="LinkedIn" icon={<FaLinkedin />} colorScheme="teal" variant="ghost" />
+              </HStack>
+              <Stack direction={{ base: 'column', sm: 'row' }} spacing={4} mt={4}>
+                {personal.map((item, idx) => (
+                  <HStack key={idx} spacing={2} align="center">
+                    <Box as={item.icon} color="teal.400" boxSize={5} />
+                    <Text fontWeight="bold" color="teal.600">{item.label}:</Text>
+                    <Text color="teal.800">{item.value}</Text>
+                  </HStack>
+                ))}
+              </Stack>
+            </Box>
+          </Flex>
+        </Box>
+      </Container>
     </Box>
   );
 }
 
+
 function About() {
   return (
-    <Box as="section" py={12}>
+    <Box as="section" py={6}>
       <Container maxW="4xl">
-        <Heading as="h2" size="lg" mb={4} color="teal.700">About Me</Heading>
-        <Text fontSize="lg">
+        <Text fontSize="lg" color="gray.700" _dark={{ color: 'gray.200' }}>
           As a Senior Software Engineer with over 9 years of experience, I am adept at developing scalable systems that enhance user experience. My expertise lies in leading teams, managing complex projects, and delivering innovative solutions in various technologies. I thrive in collaborative environments and am excited about taking on challenging tasks that contribute to organizational success.
         </Text>
       </Container>
@@ -189,153 +223,364 @@ function About() {
   );
 }
 
+
 function Experience() {
   return (
-    <Box as="section" py={12} bg={useColorModeValue('gray.50', 'gray.800')}>
-      <Container maxW="5xl">
-        <Heading as="h2" size="lg" mb={8} color="teal.700" textAlign="center">Experience</Heading>
-        <VStack spacing={8} align="stretch">
-          {experiences.map((exp, idx) => (
-            <Box key={idx} p={6} bg="white" borderRadius="lg" boxShadow="md" _dark={{ bg: 'gray.700' }}>
-              <Flex justify="space-between" align="center" mb={2} wrap="wrap">
-                <Heading as="h3" size="md" color="teal.600">{exp.title}</Heading>
+    <Accordion allowMultiple defaultIndex={[0]}>
+      {experiences.map((exp, idx) => (
+        <AccordionItem key={idx} borderRadius="lg" mb={4} border="none" bg={useColorModeValue('white', 'gray.700')} boxShadow="md">
+          <h2>
+            <AccordionButton _expanded={{ bg: 'teal.100', color: 'teal.800' }} px={6} py={4}>
+              <Flex flex="1" textAlign="left" align="center" justify="space-between" wrap="wrap">
+                <Box>
+                  <Heading as="h3" size="md" color="teal.600">{exp.title}</Heading>
+                  <Text fontWeight="semibold" color="teal.800">{exp.company}</Text>
+                </Box>
                 <Text fontWeight="bold" color="gray.500">{exp.period}</Text>
               </Flex>
-              <Text fontWeight="semibold" color="teal.800">{exp.company}</Text>
-              <List spacing={1} mt={2} color="gray.700" _dark={{ color: 'gray.200' }}>
-                {exp.description.map((desc, i) => (
-                  <ListItem key={i}>
-                    <ListIcon as={FaCheckCircle} color="teal.400" />{desc}
-                  </ListItem>
-                ))}
-              </List>
-            </Box>
-          ))}
-        </VStack>
-      </Container>
-    </Box>
+              <AccordionIcon />
+            </AccordionButton>
+          </h2>
+          <AccordionPanel pb={4}>
+            <List spacing={1} color="gray.700" _dark={{ color: 'gray.200' }}>
+              {exp.description.map((desc, i) => (
+                <ListItem key={i}>
+                  <ListIcon as={FaCheckCircle} color="teal.400" />{desc}
+                </ListItem>
+              ))}
+            </List>
+          </AccordionPanel>
+        </AccordionItem>
+      ))}
+    </Accordion>
   );
 }
+
 
 function Projects() {
   return (
-    <Box as="section" py={12} bg={useColorModeValue('gray.50', 'gray.800')}>
-      <Container maxW="6xl">
-        <Heading as="h2" size="lg" mb={8} color="teal.700" textAlign="center">Projects</Heading>
-        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
-          {projects.map((proj, idx) => (
-            <Box key={idx} p={6} bg="white" borderRadius="lg" boxShadow="md" _dark={{ bg: 'gray.700' }}>
-              <Heading as="h3" size="md" color="teal.600" mb={1}>{proj.name}</Heading>
-              <Text fontWeight="bold" color="teal.400" mb={2}>Client: {proj.client}</Text>
-              <Text color="gray.700" _dark={{ color: 'gray.200' }} mb={2}>{proj.description}</Text>
-              <Text fontWeight="semibold" color="teal.700" mt={2} mb={1}>Roles & Responsibilities:</Text>
-              <List spacing={1} mb={2} color="gray.700" _dark={{ color: 'gray.200' }}>
-                {proj.responsibilities.map((item, i) => (
-                  <ListItem key={i}>
-                    <ListIcon as={FaCheckCircle} color="teal.400" />{item}
-                  </ListItem>
-                ))}
-              </List>
-              <Text fontWeight="semibold" color="teal.700" mt={2} mb={1}>Technologies:</Text>
-              <Stack direction="row" flexWrap="wrap" spacing={2}>
-                {proj.technologies.map((tech, i) => (
-                  <Tag key={i} size="sm" colorScheme="teal" m={1} borderRadius="full">
-                    <TagLabel>{tech}</TagLabel>
-                  </Tag>
-                ))}
-              </Stack>
-            </Box>
-          ))}
-        </SimpleGrid>
-      </Container>
-    </Box>
+    <Accordion allowMultiple defaultIndex={[0]}>
+      {projects.map((proj, idx) => (
+        <AccordionItem key={idx} borderRadius="lg" mb={4} border="none" bg={useColorModeValue('white', 'gray.700')} boxShadow="md">
+          <h2>
+            <AccordionButton _expanded={{ bg: 'teal.100', color: 'teal.800' }} px={6} py={4}>
+              <Flex flex="1" textAlign="left" align="center" justify="space-between" wrap="wrap">
+                <Box>
+                  <Heading as="h3" size="md" color="teal.600">{proj.name}</Heading>
+                  <Text fontWeight="bold" color="teal.400">Client: {proj.client}</Text>
+                </Box>
+              </Flex>
+              <AccordionIcon />
+            </AccordionButton>
+          </h2>
+          <AccordionPanel pb={4}>
+            <Text color="gray.700" _dark={{ color: 'gray.200' }} mb={2}>{proj.description}</Text>
+            <Text fontWeight="semibold" color="teal.700" mt={2} mb={1}>Roles & Responsibilities:</Text>
+            <List spacing={1} mb={2} color="gray.700" _dark={{ color: 'gray.200' }}>
+              {proj.responsibilities.map((item, i) => (
+                <ListItem key={i}>
+                  <ListIcon as={FaCheckCircle} color="teal.400" />{item}
+                </ListItem>
+              ))}
+            </List>
+            <Text fontWeight="semibold" color="teal.700" mt={2} mb={1}>Technologies:</Text>
+            <Stack direction="row" flexWrap="wrap" spacing={2}>
+              {proj.technologies.map((tech, i) => (
+                <Tag key={i} size="sm" colorScheme="teal" m={1} borderRadius="full">
+                  <TagLabel>{tech}</TagLabel>
+                </Tag>
+              ))}
+            </Stack>
+          </AccordionPanel>
+        </AccordionItem>
+      ))}
+    </Accordion>
   );
 }
+
 
 function Education() {
   return (
-    <Box as="section" py={12}>
-      <Container maxW="4xl">
-        <Heading as="h2" size="lg" mb={4} color="teal.700">Education</Heading>
-        <VStack spacing={4} align="stretch">
-          {education.map((edu, idx) => (
-            <Box key={idx} p={4} bg="white" borderRadius="md" boxShadow="sm" _dark={{ bg: 'gray.700' }}>
-              <Flex justify="space-between" align="center">
+    <Accordion allowMultiple defaultIndex={[0]}>
+      {education.map((edu, idx) => (
+        <AccordionItem key={idx} borderRadius="md" mb={2} border="none" bg={useColorModeValue('white', 'gray.700')} boxShadow="sm">
+          <h2>
+            <AccordionButton _expanded={{ bg: 'teal.100', color: 'teal.800' }} px={6} py={3}>
+              <Flex flex="1" textAlign="left" align="center" justify="space-between">
                 <Text fontWeight="bold" color="teal.600">{edu.degree}</Text>
                 <Text color="gray.500">{edu.period}</Text>
               </Flex>
-              <Text color="teal.800">{edu.school}</Text>
-            </Box>
-          ))}
-        </VStack>
-      </Container>
-    </Box>
+              <AccordionIcon />
+            </AccordionButton>
+          </h2>
+          <AccordionPanel pb={2}>
+            <Text color="teal.800">{edu.school}</Text>
+          </AccordionPanel>
+        </AccordionItem>
+      ))}
+    </Accordion>
   );
 }
+
 
 function Skills() {
   return (
-    <Box as="section" py={12} bg={useColorModeValue('gray.50', 'gray.800')}>
-      <Container maxW="5xl">
-        <Heading as="h2" size="lg" mb={4} color="teal.700">Skills</Heading>
-        <Stack direction="row" flexWrap="wrap" spacing={2}>
-          {skills.map((skill, idx) => (
-            <Tag key={idx} size="md" colorScheme="teal" m={1} borderRadius="full">
-              <TagLabel>{skill}</TagLabel>
-            </Tag>
-          ))}
-        </Stack>
-      </Container>
-    </Box>
+    <Accordion allowMultiple defaultIndex={[0]}>
+      <AccordionItem borderRadius="md" mb={2} border="none" bg={useColorModeValue('white', 'gray.700')} boxShadow="sm">
+        <h2>
+          <AccordionButton _expanded={{ bg: 'teal.100', color: 'teal.800' }} px={6} py={3}>
+            <Text flex="1" textAlign="left" fontWeight="bold" color="teal.600">Skills</Text>
+            <AccordionIcon />
+          </AccordionButton>
+        </h2>
+        <AccordionPanel pb={2}>
+          <Stack direction="row" flexWrap="wrap" spacing={2}>
+            {skills.map((skill, idx) => (
+              <Tag key={idx} size="md" colorScheme="teal" m={1} borderRadius="full">
+                <TagLabel>{skill}</TagLabel>
+              </Tag>
+            ))}
+          </Stack>
+        </AccordionPanel>
+      </AccordionItem>
+    </Accordion>
   );
 }
 
 
-function PersonalDetailsWithNav() {
-  const navigate = useNavigate();
+
+// Sticky Navigation Bar
+import { ReactElement } from 'react';
+
+type SectionNav = {
+  label: string;
+  icon: ReactElement;
+  ref: React.RefObject<HTMLElement | null>;
+};
+
+function StickyNav({ sections }: { sections: SectionNav[] }) {
+  const navBg = useColorModeValue('rgba(255,255,255,0.95)', 'rgba(26,32,44,0.95)');
   return (
-    <Box as="section" py={12}>
-      <Container maxW="4xl">
-        <Heading as="h2" size="lg" mb={4} color="teal.700">Personal Details</Heading>
-        <Stack direction={{ base: 'column', md: 'row' }} spacing={8}>
-          {personal.map((item, idx) => (
-            <HStack key={idx} spacing={3} align="center">
-              <Box as={item.icon} color="teal.500" boxSize={6} />
-              <Text fontWeight="bold">{item.label}:</Text>
-              <Text>{item.value}</Text>
-            </HStack>
-            
+    <Box as="nav" position="sticky" top="0" zIndex="100" bg={navBg} boxShadow="sm" py={2} px={{ base: 2, md: 8 }}>
+      <Flex align="center" justify="space-between" maxW="6xl" mx="auto">
+        <HStack spacing={4}>
+          <Avatar size="sm" name="Nazih Mulla" src="https://ui-avatars.com/api/?name=Nazih+Mulla&background=0D8ABC&color=fff&size=128" />
+          <Heading as="span" size="sm" color="teal.600" fontWeight="bold">Nazih Mulla</Heading>
+        </HStack>
+        <HStack spacing={{ base: 1, md: 4 }}>
+          {sections.map(({ label, icon, ref }) => (
+            <Button
+              key={label}
+              variant="ghost"
+              size="sm"
+              leftIcon={icon}
+              colorScheme="teal"
+              onClick={() => ref.current?.scrollIntoView({ behavior: 'smooth' })}
+              fontWeight="bold"
+              fontSize={{ base: 'xs', md: 'sm' }}
+            >
+              {label}
+            </Button>
           ))}
-        
-        </Stack>
-      
+        </HStack>
+      </Flex>
+    </Box>
+  );
+}
+
+// Modern Hero Section
+function Hero({ aboutRef }: { aboutRef: any }) {
+  return (
+    <Box
+      as="section"
+      minH={{ base: '60vh', md: '80vh' }}
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      bgGradient="linear(to-br, teal.500 60%, blue.400 100%)"
+      position="relative"
+      px={2}
+    >
+      <Container maxW="3xl" centerContent>
+        <Fade in>
+          <Box
+            w="100%"
+            borderRadius="2xl"
+            boxShadow="2xl"
+            bg={useColorModeValue('rgba(255,255,255,0.85)', 'rgba(26,32,44,0.85)')}
+            borderWidth="2px"
+            borderColor={useColorModeValue('teal.200', 'teal.700')}
+            p={{ base: 6, md: 10 }}
+            mt={-20}
+            backdropFilter="blur(8px)"
+            position="relative"
+            textAlign="center"
+          >
+            <Avatar
+              size="2xl"
+              name="Nazih Mulla"
+              src="https://ui-avatars.com/api/?name=Nazih+Mulla&background=0D8ABC&color=fff&size=256"
+              mb={4}
+              mx="auto"
+              boxShadow="lg"
+              border="4px solid"
+              borderColor="teal.400"
+            />
+            <Heading as="h1" size="2xl" color="teal.700">Nazih Mulla</Heading>
+            <Text fontSize="xl" color="teal.500" fontWeight="bold" mt={1}>Sr Software Engineer</Text>
+            <HStack justify="center" mt={4} spacing={4}>
+              <IconButton as="a" href="mailto:nazihshaikh@gmail.com" aria-label="Email" icon={<FaEnvelope />} colorScheme="teal" variant="ghost" />
+              <IconButton as="a" href="https://github.com/shaikhnazih" aria-label="GitHub" icon={<FaGithub />} colorScheme="teal" variant="ghost" />
+              <IconButton as="a" href="https://linkedin.com/in/nazihshaikh" aria-label="LinkedIn" icon={<FaLinkedin />} colorScheme="teal" variant="ghost" />
+            </HStack>
+            <Text fontSize="md" color="gray.700" _dark={{ color: 'gray.200' }} mt={6} mb={2}>
+              As a Senior Software Engineer with over 9 years of experience, I am adept at developing scalable systems that enhance user experience. My expertise lies in leading teams, managing complex projects, and delivering innovative solutions in various technologies.
+            </Text>
+            <Button
+              mt={4}
+              colorScheme="teal"
+              size="lg"
+              onClick={() => aboutRef.current?.scrollIntoView({ behavior: 'smooth' })}
+              rightIcon={<FaChevronDown />}
+              fontWeight="bold"
+            >
+              Learn More
+            </Button>
+          </Box>
+        </Fade>
       </Container>
     </Box>
   );
 }
+
+// Modern Section Wrapper
+const Section = chakra('section', {
+  baseStyle: {
+    py: { base: 8, md: 16 },
+    px: { base: 2, md: 0 },
+    w: '100%',
+  },
+});
 
 function App() {
+  // Section refs for scroll navigation
+  const aboutRef = useRef<HTMLElement>(null);
+  const skillsRef = useRef<HTMLElement>(null);
+  const expRef = useRef<HTMLElement>(null);
+  const projRef = useRef<HTMLElement>(null);
+  const eduRef = useRef<HTMLElement>(null);
+
+  const sections: SectionNav[] = [
+    { label: 'About', icon: <FaUser />, ref: aboutRef },
+    { label: 'Skills', icon: <FaTools />, ref: skillsRef },
+    { label: 'Experience', icon: <FaBriefcase />, ref: expRef },
+    { label: 'Projects', icon: <FaProjectDiagram />, ref: projRef },
+    { label: 'Education', icon: <FaGraduationCap />, ref: eduRef },
+  ];
+
   return (
-    <Box bg={useColorModeValue('gray.100', 'gray.900')} minH="100vh">
-      <Router>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <Hero />
-              <PersonalDetailsWithNav />
-                <Education />
-                <About />
-                <Skills />
-                <Experience />
-                <Projects />
-              </>
-            }
-          />
-         
-        </Routes>
-      </Router>
+    <Box bg={useColorModeValue('gray.50', 'gray.900')} minH="100vh">
+      <StickyNav sections={sections} />
+      <Hero aboutRef={aboutRef} />
+      <Section ref={aboutRef} id="about" bg={useColorModeValue('white', 'gray.800')}>
+        <Container maxW="4xl">
+          <Heading as="h2" size="xl" mb={4} color="teal.700" textAlign="center">About Me</Heading>
+          <Text fontSize="lg" color="gray.700" _dark={{ color: 'gray.200' }} textAlign="center">
+            As a Senior Software Engineer with over 9 years of experience, I am adept at developing scalable systems that enhance user experience. My expertise lies in leading teams, managing complex projects, and delivering innovative solutions in various technologies. I thrive in collaborative environments and am excited about taking on challenging tasks that contribute to organizational success.
+          </Text>
+        </Container>
+      </Section>
+      <Section ref={skillsRef} id="skills" bg={useColorModeValue('gray.50', 'gray.900')}> 
+        <Container maxW="5xl">
+          <Heading as="h2" size="xl" mb={4} color="teal.700" textAlign="center">Skills</Heading>
+          <SimpleGrid columns={{ base: 2, sm: 3, md: 5 }} spacing={4}>
+            {skills.map((skill, idx) => (
+              <Tag key={idx} size="lg" colorScheme="teal" borderRadius="full" px={4} py={2} fontWeight="bold" fontSize="md" textAlign="center">
+                <TagLabel>{skill}</TagLabel>
+              </Tag>
+            ))}
+          </SimpleGrid>
+        </Container>
+      </Section>
+      <Section ref={expRef} id="experience" bg={useColorModeValue('white', 'gray.800')}>
+        <Container maxW="5xl">
+          <Heading as="h2" size="xl" mb={8} color="teal.700" textAlign="center">Experience</Heading>
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
+            {experiences.map((exp, idx) => (
+              <Box key={idx} p={6} bg={useColorModeValue('gray.50', 'gray.700')} borderRadius="xl" boxShadow="lg" _hover={{ boxShadow: '2xl', transform: 'scale(1.03)' }} transition="all 0.2s">
+                <Flex justify="space-between" align="center" mb={2} wrap="wrap">
+                  <Heading as="h3" size="md" color="teal.600">{exp.title}</Heading>
+                  <Text fontWeight="bold" color="gray.500">{exp.period}</Text>
+                </Flex>
+                <Text fontWeight="semibold" color="teal.800">{exp.company}</Text>
+                <List spacing={1} mt={2} color="gray.700" _dark={{ color: 'gray.200' }}>
+                  {exp.description.map((desc, i) => (
+                    <ListItem key={i}>
+                      <ListIcon as={FaCheckCircle} color="teal.400" />{desc}
+                    </ListItem>
+                  ))}
+                </List>
+              </Box>
+            ))}
+          </SimpleGrid>
+        </Container>
+      </Section>
+      <Section ref={projRef} id="projects" bg={useColorModeValue('gray.50', 'gray.900')}>
+        <Container maxW="6xl">
+          <Heading as="h2" size="xl" mb={8} color="teal.700" textAlign="center">Projects</Heading>
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
+            {projects.map((proj, idx) => (
+              <Box key={idx} p={6} bg={useColorModeValue('white', 'gray.700')} borderRadius="xl" boxShadow="lg" _hover={{ boxShadow: '2xl', transform: 'scale(1.03)' }} transition="all 0.2s">
+                <Heading as="h3" size="md" color="teal.600" mb={1}>{proj.name}</Heading>
+                <Text fontWeight="bold" color="teal.400" mb={2}>Client: {proj.client}</Text>
+                <Text color="gray.700" _dark={{ color: 'gray.200' }} mb={2}>{proj.description}</Text>
+                <Text fontWeight="semibold" color="teal.700" mt={2} mb={1}>Roles & Responsibilities:</Text>
+                <List spacing={1} mb={2} color="gray.700" _dark={{ color: 'gray.200' }}>
+                  {proj.responsibilities.map((item, i) => (
+                    <ListItem key={i}>
+                      <ListIcon as={FaCheckCircle} color="teal.400" />{item}
+                    </ListItem>
+                  ))}
+                </List>
+                <Text fontWeight="semibold" color="teal.700" mt={2} mb={1}>Technologies:</Text>
+                <Stack direction="row" flexWrap="wrap" spacing={2}>
+                  {proj.technologies.map((tech, i) => (
+                    <Tag key={i} size="sm" colorScheme="teal" m={1} borderRadius="full">
+                      <TagLabel>{tech}</TagLabel>
+                    </Tag>
+                  ))}
+                </Stack>
+              </Box>
+            ))}
+          </SimpleGrid>
+        </Container>
+      </Section>
+      <Section ref={eduRef} id="education" bg={useColorModeValue('white', 'gray.800')}>
+        <Container maxW="4xl">
+          <Heading as="h2" size="xl" mb={4} color="teal.700" textAlign="center">Education</Heading>
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
+            {education.map((edu, idx) => (
+              <Box key={idx} p={4} bg={useColorModeValue('gray.50', 'gray.700')} borderRadius="lg" boxShadow="md" _hover={{ boxShadow: 'xl', transform: 'scale(1.02)' }} transition="all 0.2s">
+                <Flex justify="space-between" align="center">
+                  <Text fontWeight="bold" color="teal.600">{edu.degree}</Text>
+                  <Text color="gray.500">{edu.period}</Text>
+                </Flex>
+                <Text color="teal.800">{edu.school}</Text>
+              </Box>
+            ))}
+          </SimpleGrid>
+        </Container>
+      </Section>
+      <Box as="footer" py={8} bg={useColorModeValue('teal.700', 'teal.900')} color="white" textAlign="center" mt={12}>
+        <Container maxW="4xl">
+          <HStack justify="center" spacing={6} mb={2}>
+            <IconButton as="a" href="mailto:nazihshaikh@gmail.com" aria-label="Email" icon={<FaEnvelope />} colorScheme="whiteAlpha" variant="ghost" />
+            <IconButton as="a" href="https://github.com/shaikhnazih" aria-label="GitHub" icon={<FaGithub />} colorScheme="whiteAlpha" variant="ghost" />
+            <IconButton as="a" href="https://linkedin.com/in/nazihshaikh" aria-label="LinkedIn" icon={<FaLinkedin />} colorScheme="whiteAlpha" variant="ghost" />
+          </HStack>
+          <Text fontSize="sm">&copy; {new Date().getFullYear()} Nazih Mulla. All rights reserved.</Text>
+        </Container>
+      </Box>
     </Box>
   );
 }
