@@ -154,13 +154,13 @@ const projects = [
 ];
 
 
+// Improved ProfileCard for mobile responsiveness
 function ProfileCard() {
   const cardBg = useColorModeValue('rgba(255,255,255,0.85)', 'rgba(26,32,44,0.85)');
   const borderColor = useColorModeValue('teal.200', 'teal.700');
   const shadow = useColorModeValue('0 8px 32px 0 rgba(31, 38, 135, 0.15)', '0 8px 32px 0 rgba(0,0,0,0.45)');
-  const isMobile = useBreakpointValue({ base: true, md: false });
   return (
-    <Box as="section" pt={10} pb={6} px={2} bgGradient="linear(to-b, teal.400, teal.600, teal.800)" minH="40vh">
+    <Box as="section" pt={{ base: 6, md: 10 }} pb={{ base: 4, md: 6 }} px={2} bgGradient="linear(to-b, teal.400, teal.600, teal.800)" minH={{ base: '30vh', md: '40vh' }}>
       <Container maxW="3xl" centerContent>
         <Box
           w="100%"
@@ -169,36 +169,37 @@ function ProfileCard() {
           bg={cardBg}
           borderWidth="2px"
           borderColor={borderColor}
-          p={{ base: 6, md: 10 }}
-          mt={-20}
+          p={{ base: 4, sm: 6, md: 10 }}
+          mt={{ base: -12, md: -20 }}
           backdropFilter="blur(8px)"
           position="relative"
         >
-          <Flex direction={isMobile ? 'column' : 'row'} align="center" justify="space-between">
+          <Flex direction={{ base: 'column', md: 'row' }} align="center" justify="space-between">
             <Avatar
-              size="2xl"
+              size={{ base: 'xl', sm: '2xl' }}
               name="Nazih Mulla"
               src="https://ui-avatars.com/api/?name=Nazih+Mulla&background=0D8ABC&color=fff&size=256"
-              mb={isMobile ? 4 : 0}
-              mr={isMobile ? 0 : 8}
+              mb={{ base: 4, md: 0 }}
+              mr={{ base: 0, md: 8 }}
               boxShadow="lg"
               border="4px solid"
               borderColor="teal.400"
+              alignSelf={{ base: 'center', md: 'flex-start' }}
             />
-            <Box flex="1">
-              <Heading as="h1" size="xl" color="teal.700">Nazih Mulla</Heading>
-              <Text fontSize="lg" color="teal.500" fontWeight="bold" mt={1}>Sr Software Engineer</Text>
-              <HStack mt={3} spacing={3}>
-                <IconButton as="a" href="mailto:nazihshaikh@gmail.com" aria-label="Email" icon={<FaEnvelope />} colorScheme="teal" variant="ghost" />
-                <IconButton as="a" href="https://github.com/shaikhnazih" aria-label="GitHub" icon={<FaGithub />} colorScheme="teal" variant="ghost" />
-                <IconButton as="a" href="https://linkedin.com/in/nazihshaikh" aria-label="LinkedIn" icon={<FaLinkedin />} colorScheme="teal" variant="ghost" />
+            <Box flex="1" w="100%">
+              <Heading as="h1" size={{ base: 'lg', sm: 'xl' }} color="teal.700" textAlign={{ base: 'center', md: 'left' }}>Nazih Mulla</Heading>
+              <Text fontSize={{ base: 'md', sm: 'lg' }} color="teal.500" fontWeight="bold" mt={1} textAlign={{ base: 'center', md: 'left' }}>Sr Software Engineer</Text>
+              <HStack mt={3} spacing={2} justify={{ base: 'center', md: 'flex-start' }}>
+                <IconButton as="a" href="mailto:nazihshaikh@gmail.com" aria-label="Email" icon={<FaEnvelope />} colorScheme="teal" variant="ghost" size={{ base: 'md', sm: 'md' }} />
+                <IconButton as="a" href="https://github.com/shaikhnazih" aria-label="GitHub" icon={<FaGithub />} colorScheme="teal" variant="ghost" size={{ base: 'md', sm: 'md' }} />
+                <IconButton as="a" href="https://linkedin.com/in/nazihshaikh" aria-label="LinkedIn" icon={<FaLinkedin />} colorScheme="teal" variant="ghost" size={{ base: 'md', sm: 'md' }} />
               </HStack>
-              <Stack direction={{ base: 'column', sm: 'row' }} spacing={4} mt={4}>
+              <Stack direction={{ base: 'column', sm: 'row' }} spacing={4} mt={4} align={{ base: 'center', sm: 'flex-start' }}>
                 {personal.map((item, idx) => (
                   <HStack key={idx} spacing={2} align="center">
                     <Box as={item.icon} color="teal.400" boxSize={5} />
-                    <Text fontWeight="bold" color="teal.600">{item.label}:</Text>
-                    <Text color="teal.800">{item.value}</Text>
+                    <Text fontWeight="bold" color="teal.600" fontSize={{ base: 'sm', sm: 'md' }}>{item.label}:</Text>
+                    <Text color="teal.800" fontSize={{ base: 'sm', sm: 'md' }}>{item.value}</Text>
                   </HStack>
                 ))}
               </Stack>
@@ -493,9 +494,9 @@ function App() {
       <Section ref={skillsRef} id="skills" bg={useColorModeValue('gray.50', 'gray.900')}> 
         <Container maxW="5xl">
           <Heading as="h2" size="xl" mb={4} color="teal.700" textAlign="center">Skills</Heading>
-          <SimpleGrid columns={{ base: 2, sm: 3, md: 5 }} spacing={4}>
+          <SimpleGrid columns={{ base: 2, xs: 3, sm: 4, md: 5 }} spacing={{ base: 2, sm: 4 }}>
             {skills.map((skill, idx) => (
-              <Tag key={idx} size="lg" colorScheme="teal" borderRadius="full" px={4} py={2} fontWeight="bold" fontSize="md" textAlign="center">
+              <Tag key={idx} size={{ base: 'md', sm: 'lg' }} colorScheme="teal" borderRadius="full" px={{ base: 2, sm: 4 }} py={2} fontWeight="bold" fontSize={{ base: 'sm', sm: 'md' }} textAlign="center">
                 <TagLabel>{skill}</TagLabel>
               </Tag>
             ))}
@@ -505,15 +506,15 @@ function App() {
       <Section ref={expRef} id="experience" bg={useColorModeValue('white', 'gray.800')}>
         <Container maxW="5xl">
           <Heading as="h2" size="xl" mb={8} color="teal.700" textAlign="center">Experience</Heading>
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
+          <SimpleGrid columns={{ base: 1, sm: 1, md: 2 }} spacing={{ base: 4, md: 8 }}>
             {experiences.map((exp, idx) => (
-              <Box key={idx} p={6} bg={useColorModeValue('gray.50', 'gray.700')} borderRadius="xl" boxShadow="lg" _hover={{ boxShadow: '2xl', transform: 'scale(1.03)' }} transition="all 0.2s">
-                <Flex justify="space-between" align="center" mb={2} wrap="wrap">
-                  <Heading as="h3" size="md" color="teal.600">{exp.title}</Heading>
-                  <Text fontWeight="bold" color="gray.500">{exp.period}</Text>
+              <Box key={idx} p={{ base: 4, sm: 6 }} bg={useColorModeValue('gray.50', 'gray.700')} borderRadius="xl" boxShadow="lg" _hover={{ boxShadow: '2xl', transform: 'scale(1.03)' }} transition="all 0.2s">
+                <Flex direction={{ base: 'column', sm: 'row' }} justify="space-between" align={{ base: 'flex-start', sm: 'center' }} mb={2} wrap="wrap">
+                  <Heading as="h3" size={{ base: 'sm', sm: 'md' }} color="teal.600">{exp.title}</Heading>
+                  <Text fontWeight="bold" color="gray.500" fontSize={{ base: 'sm', sm: 'md' }}>{exp.period}</Text>
                 </Flex>
-                <Text fontWeight="semibold" color="teal.800">{exp.company}</Text>
-                <List spacing={1} mt={2} color="gray.700" _dark={{ color: 'gray.200' }}>
+                <Text fontWeight="semibold" color="teal.800" fontSize={{ base: 'sm', sm: 'md' }}>{exp.company}</Text>
+                <List spacing={1} mt={2} color="gray.700" _dark={{ color: 'gray.200' }} fontSize={{ base: 'sm', sm: 'md' }}>
                   {exp.description.map((desc, i) => (
                     <ListItem key={i}>
                       <ListIcon as={FaCheckCircle} color="teal.400" />{desc}
@@ -528,24 +529,24 @@ function App() {
       <Section ref={projRef} id="projects" bg={useColorModeValue('gray.50', 'gray.900')}>
         <Container maxW="6xl">
           <Heading as="h2" size="xl" mb={8} color="teal.700" textAlign="center">Projects</Heading>
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
+          <SimpleGrid columns={{ base: 1, sm: 1, md: 2 }} spacing={{ base: 4, md: 8 }}>
             {projects.map((proj, idx) => (
-              <Box key={idx} p={6} bg={useColorModeValue('white', 'gray.700')} borderRadius="xl" boxShadow="lg" _hover={{ boxShadow: '2xl', transform: 'scale(1.03)' }} transition="all 0.2s">
-                <Heading as="h3" size="md" color="teal.600" mb={1}>{proj.name}</Heading>
-                <Text fontWeight="bold" color="teal.400" mb={2}>Client: {proj.client}</Text>
-                <Text color="gray.700" _dark={{ color: 'gray.200' }} mb={2}>{proj.description}</Text>
-                <Text fontWeight="semibold" color="teal.700" mt={2} mb={1}>Roles & Responsibilities:</Text>
-                <List spacing={1} mb={2} color="gray.700" _dark={{ color: 'gray.200' }}>
+              <Box key={idx} p={{ base: 4, sm: 6 }} bg={useColorModeValue('white', 'gray.700')} borderRadius="xl" boxShadow="lg" _hover={{ boxShadow: '2xl', transform: 'scale(1.03)' }} transition="all 0.2s">
+                <Heading as="h3" size={{ base: 'sm', sm: 'md' }} color="teal.600" mb={1}>{proj.name}</Heading>
+                <Text fontWeight="bold" color="teal.400" mb={2} fontSize={{ base: 'sm', sm: 'md' }}>Client: {proj.client}</Text>
+                <Text color="gray.700" _dark={{ color: 'gray.200' }} mb={2} fontSize={{ base: 'sm', sm: 'md' }}>{proj.description}</Text>
+                <Text fontWeight="semibold" color="teal.700" mt={2} mb={1} fontSize={{ base: 'sm', sm: 'md' }}>Roles & Responsibilities:</Text>
+                <List spacing={1} mb={2} color="gray.700" _dark={{ color: 'gray.200' }} fontSize={{ base: 'sm', sm: 'md' }}>
                   {proj.responsibilities.map((item, i) => (
                     <ListItem key={i}>
                       <ListIcon as={FaCheckCircle} color="teal.400" />{item}
                     </ListItem>
                   ))}
                 </List>
-                <Text fontWeight="semibold" color="teal.700" mt={2} mb={1}>Technologies:</Text>
+                <Text fontWeight="semibold" color="teal.700" mt={2} mb={1} fontSize={{ base: 'sm', sm: 'md' }}>Technologies:</Text>
                 <Stack direction="row" flexWrap="wrap" spacing={2}>
                   {proj.technologies.map((tech, i) => (
-                    <Tag key={i} size="sm" colorScheme="teal" m={1} borderRadius="full">
+                    <Tag key={i} size={{ base: 'xs', sm: 'sm' }} colorScheme="teal" m={1} borderRadius="full">
                       <TagLabel>{tech}</TagLabel>
                     </Tag>
                   ))}
@@ -558,14 +559,14 @@ function App() {
       <Section ref={eduRef} id="education" bg={useColorModeValue('white', 'gray.800')}>
         <Container maxW="4xl">
           <Heading as="h2" size="xl" mb={4} color="teal.700" textAlign="center">Education</Heading>
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
+          <SimpleGrid columns={{ base: 1, sm: 1, md: 2 }} spacing={{ base: 4, md: 6 }}>
             {education.map((edu, idx) => (
-              <Box key={idx} p={4} bg={useColorModeValue('gray.50', 'gray.700')} borderRadius="lg" boxShadow="md" _hover={{ boxShadow: 'xl', transform: 'scale(1.02)' }} transition="all 0.2s">
-                <Flex justify="space-between" align="center">
-                  <Text fontWeight="bold" color="teal.600">{edu.degree}</Text>
-                  <Text color="gray.500">{edu.period}</Text>
+              <Box key={idx} p={{ base: 3, sm: 4 }} bg={useColorModeValue('gray.50', 'gray.700')} borderRadius="lg" boxShadow="md" _hover={{ boxShadow: 'xl', transform: 'scale(1.02)' }} transition="all 0.2s">
+                <Flex direction={{ base: 'column', sm: 'row' }} justify="space-between" align={{ base: 'flex-start', sm: 'center' }}>
+                  <Text fontWeight="bold" color="teal.600" fontSize={{ base: 'sm', sm: 'md' }}>{edu.degree}</Text>
+                  <Text color="gray.500" fontSize={{ base: 'sm', sm: 'md' }}>{edu.period}</Text>
                 </Flex>
-                <Text color="teal.800">{edu.school}</Text>
+                <Text color="teal.800" fontSize={{ base: 'sm', sm: 'md' }}>{edu.school}</Text>
               </Box>
             ))}
           </SimpleGrid>
