@@ -308,12 +308,7 @@ function PersonalDetailsWithNav() {
             </HStack>
             
           ))}
-           <HStack key="as12nazih" spacing={3} align="center">
-              <Box  color="teal.500" boxSize={6} />
-              <Text fontWeight="bold">Wife:</Text>
-              <Text>  <Button
-                 mt={8} colorScheme="teal" onClick={() => navigate('/shirin')}>Shirin Pathan</Button></Text>
-            </HStack>
+        
         </Stack>
       
       </Container>
